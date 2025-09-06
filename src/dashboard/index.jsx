@@ -112,6 +112,8 @@ const Dashboard = () => {
     window.location.reload();
   }
 
+  const colors = ["blue", "red", "yellow", "green", "purple", "orange"];
+
   return (
     <div className="flex h-screen w-screen bg-gray-50 font-sans overflow-hidden">
       <div className="w-52 flex flex-col text-white">
@@ -305,11 +307,11 @@ const Dashboard = () => {
                       <div key={index} className="bg-white rounded-xl shadow-lg overflow-hidden">
                         <div className="relative h-40 p-3">
                           <img
-                            src={modul.cover_image || "https://picsum.photos/400/200"}
+                            src={`https://picsum.photos/${400 * index}/${200 * index}`} 
                             alt={modul.category}
-                            className="w-full h-full object-cover rounded-xl"
+                            className="absolute inset-0 w-full h-full object-cover"
                           />
-                          <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40">
+                          <div className="absolute inset-0 flex items-center justify-center bg-opacity-40">
                             <h3 className="text-lg font-semibold text-white">
                               {modul.category.toUpperCase()}
                             </h3>
@@ -394,7 +396,7 @@ const Dashboard = () => {
         </div>
       </div>
 
-      <div className="w-85 h-screen bg-white p-4 flex flex-col justify-between min-y-0">
+      <div className="w-90 h-screen bg-white p-4 flex flex-col justify-between min-y-0">
         <div>
           <div className="relative w-25 h-25 mx-auto mb-4">
             <img
@@ -468,18 +470,18 @@ const Dashboard = () => {
                 {scheduleItems.map((item, index) => (
                   <div
                     key={index}
-                    className="flex items-center justify-between p-4 hover:bg-gray-50 rounded-lg cursor-pointer"
+                    className="flex items-center justify-between py-4 hover:bg-gray-50 rounded-lg cursor-pointer"
                   >
                     <div className="flex items-center">
                       <div
                         className="w-12 h-12 mr-4 flex-shrink-0"
-                        style={{ backgroundColor: getRandomColor() }}
+                        style={{ backgroundColor: colors[index] }}
                       ></div>
                       <div className="flex-1">
                         <p className="text-sm text-gray-800 font-medium leading-tight">
                           {item.title}
                         </p>
-                        <p className="text-xs text-gray-500 mt-1">{item.time}</p>
+                        <p className="text-xs text-gray-500 mt-1">{item.start_time} - {item.end_time} with Mr {item.instructor_name} </p>
                       </div>
                     </div>
                     <ChevronRight className="w-4 h-4 text-gray-400" />
@@ -499,7 +501,7 @@ const Dashboard = () => {
                 {scheduleItems.map((item, index) => (
                   <div key={index} className="bg-gradient-to-br mb-4 from-blue-600 to-blue-800 rounded-2xl h-48 flex items-center justify-center relative overflow-hidden">
                     <img
-                      src={item.cover_image ? item.cover_image : "https://picsum.photos/400/200"}
+                      src={`https://picsum.photos/${400 + index}/${200 + index}`} 
                       alt={item.title}
                       className="absolute inset-0 w-full h-full object-cover"
                     />
